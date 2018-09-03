@@ -1,9 +1,9 @@
 object manzana {
-	const property imagen = "manzana.png"
+	const property imagen = "apple.png"
 	method energia() = 80
 }
 
 object alpiste {
-	const property imagen = "alpiste.png"
+	const property imagen = "sunflower.png"
 	method energia() = 5
 }
