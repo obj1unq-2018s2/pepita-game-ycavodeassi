@@ -22,9 +22,8 @@ program PepitaGame {
 	game.addVisualCharacter(roque)
 	
 //  COLISIONES
-	game.whenCollideDo(conurbano, { roque => game.say(roque, roque.peligro()) })
-	game.whenCollideDo(pepita, { roque => game.say(roque, roque.entrenar()) })
-	
+	game.whenCollideDo(roque, { algo => algo.teEncontro(roque) } )
+	game.whenCollideDo(pepita, { algo => algo.teEncontro(pepita) } )
 
 //	TECLADO
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }

@@ -1,5 +1,10 @@
 import ciudades.*
 
+//Hacer que pepita no haga nada si le indico que vuele a la ciudad en la que ya está. 
+//En cambio usar el mensaje 'say' para que pepita diga "Ya estoy en <nombre de la ciudad>!".
+//Pepita tampoco debe volar si no le alcanza la energia y 
+//en cambio usamos el mensaje 'say' para decir "Dame de comer primero!".
+
 object pepita {
 	var property ciudad 
 	var property energia = 100
@@ -13,10 +18,9 @@ object pepita {
 	method volaHacia(unaCiudad) {
 		if (ciudad != unaCiudad) {
 			self.move(unaCiudad,unaCiudad.posicion())
-			//ciudad = unaCiudad
 		}
 		else {
-			game.say(self, self.yaEstoyEnCiudad(unaCiudad))
+			self.yaEnCiudad(unaCiudad)
 		}
 	}
 	method energiaParaVolar(distancia) = 15 + 5 * distancia
@@ -28,12 +32,13 @@ object pepita {
 			ciudad = unaCiudad
 		}
 		else {
-			game.say(self, self.pocaEnergia())
+			self.pocaEnergia()
 			}
 	}
 	
 	//Nuevos Metodos
-	//Cambia la imagen de pepita segun su energia.
+	method teEncontro(alguien) { alguien.alimentarA(self) }
+	//Bonus::Cambia la imagen de pepita segun su energia.
 	method evolucion() {
 		if (energia < 10) {
 			imagen = "pidgey.png"
@@ -45,8 +50,8 @@ object pepita {
 	//Retorna true si tiene energia suf. para volar a nueva posicion.
 	method puedeVolar(nuevaPosicion) = self.energiaParaVolar(posicion.distance(nuevaPosicion)) <= energia
 	//Metodos de dialogo. 
-	method pocaEnergia() = "Tengo hambre, dame de COMER!"
-	method yaEstoyEnCiudad(unaCiudad) = "Ya estoy en " + unaCiudad
-
+	method pocaEnergia() = game.say(self, "Dame de Comer!")
+	method yaEnCiudad(unaCiudad) = game.say(self, "Ya estoy en " + unaCiudad)
+	//method llegueACiudad(unaCiudad) = "Llegue a " + unaCiudad
 	
 }
