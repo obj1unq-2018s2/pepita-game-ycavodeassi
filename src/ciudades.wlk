@@ -19,6 +19,6 @@ object conurbano {
 	method nombre() = "Conurbano"
 	method posicion() = game.at(7,8)
 	//Nuevo Metodo
-	method teEncontro(alguien) {}
+	method teEncontro(alguien) { alguien.peligro() }
 }
 

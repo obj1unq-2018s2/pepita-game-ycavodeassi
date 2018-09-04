@@ -10,28 +10,29 @@ object roque {
 	var property comida = null
 	var property imagen = "roque.png"
 	var property position = game.at(0,9)
+	var property randomPosition = game.at(1.randomUpTo(10), 1.randomUpTo(10))
 	//Nuevos Metodos
-	method teEncontro(alguien) {
-	}
 	method alimentarA(alguien) {
 		if (comida!=null) {
 			alguien.come(comida)
-			game.addVisualIn(comida, position.randomUpTo(10))
+			game.addVisualIn(comida, randomPosition)
+			comida = null
 		}
 	}
 	method guardarComida(unaComida) {
-		if(comida!=null){ 
+		if(comida!=null && comida!=unaComida){ 
+			self.dejarComida(comida)
+			comida = unaComida
+			game.removeVisual(unaComida)
+		}
+		else {
 			comida = unaComida
 			game.removeVisual(unaComida)
 		}
 	}
-	method dejarComida(unaComida) {
-		if(comida!=null){
-			game.addVisualIn(unaComida, position.randomUpTo(10))
-		}
-
+	method dejarComida(unaComida) = game.addVisualIn(unaComida, position.clone().up(1))
+	method teEncontro(alguien) {
 	}
 	//Extra
-	//method peligro() = "Conurbano, Perdiste todo!"
-	//method llegueACiudad(unaCiudad) = "Llegue a " + unaCiudad
+	method peligro() = game.say(self, "Conurbano!! AHH TE ASUSTASTE!")
 }

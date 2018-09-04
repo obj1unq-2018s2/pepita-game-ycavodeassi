@@ -52,6 +52,5 @@ object pepita {
 	//Metodos de dialogo. 
 	method pocaEnergia() = game.say(self, "Dame de Comer!")
 	method yaEnCiudad(unaCiudad) = game.say(self, "Ya estoy en " + unaCiudad)
-	//method llegueACiudad(unaCiudad) = "Llegue a " + unaCiudad
 	
 }
