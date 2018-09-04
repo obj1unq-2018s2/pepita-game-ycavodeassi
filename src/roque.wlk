@@ -10,12 +10,13 @@ object roque {
 	var property comida = null
 	var property imagen = "roque.png"
 	var property position = game.at(0,9)
-	var property randomPosition = game.at(1.randomUpTo(10), 1.randomUpTo(10))
+	var property randomPosition = game.at(1.randomUpTo(10), 1.randomUpTo(10)) //objeto.randomUpTo(objeto)
 	//Nuevos Metodos
 	method alimentarA(alguien) {
 		if (comida!=null) {
 			alguien.come(comida)
 			game.addVisualIn(comida, randomPosition)
+			randomPosition = game.at(1.randomUpTo(10), 1.randomUpTo(10))
 			comida = null
 		}
 	}
